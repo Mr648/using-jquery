@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Starting jQuery</title>
+    <style>
+        .span-blue {
+            color: blue;
+            font-weight: bold;
+        }
+
+        #toggle-span{
+            background: crimson;
+            color: white;
+            border-radius: 12rem;
+            padding: 16px;
+        }
+       .blue{
+           color: blue;
+       }
+       .red{
+           color: red;
+       }
+    </style>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <script src="resource/js/libraries/jquery-3.5.1.min.js"></script>
+
+</head>
+<body>
+<span id="paragraph"></span>
+<span class="square blue">Sample Blue Text</span>
+<span class="square red">Sample Red Text</span>
+<span id="toggle-span">Toggle</span>
+<script>
+    $(document).ready(function () {
+        $("#paragraph").text("Hello jQuery");
+        $("#paragraph").mouseenter(function(){
+            $(this).css('color','red');
+        });
+
+        $("#paragraph").mouseleave(function(){
+            $(this).css('color','green');
+        });
+        $('.square').addClass('span-blue');
+
+        let hide = false;
+        $('#toggle-span').dblclick(function (event) {
+            // $(this) => $('#toggle-span')
+            if (hide) {
+                $('span.square.red').show();
+            } else {
+                $('.square.red').hide();
+            }
+            hide = !hide;
+        });
+
+    });
+</script>
+</body>
+</html>

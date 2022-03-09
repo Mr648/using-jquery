@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moving Image</title>
+    <script src="resource/js/libraries/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            background: #eeeeee;
+        }
+
+        img.car {
+            position: absolute;
+            top: 256px;
+            left: 512px;
+            z-index: 600;
+        }
+
+        .tree {
+            position: absolute;
+            top: 8px;
+            left: 256px;
+            height: 512px;
+            z-index: 500;
+        }
+    </style>
+</head>
+<body>
+<audio src=""></audio>
+<img src="resource/images/tree.png" alt="Car" class="tree">
+<img src="resource/images/car.webp" alt="Car" class="car">
+<script>
+    const ARROW_LEFT = 37;
+    const ARROW_TOP = 38;
+    const ARROW_RIGHT = 39;
+    const ARROW_DOWN= 40;
+
+
+    $(document).ready(function () {
+
+        function move(position) {
+            if (position < 0) return;
+            setTimeout(function () {
+                const car = $('img.car');
+                car.css('left', (position + "px"));
+                move(position - 10);
+            }, 33);
+        }
+
+        move(1024);
+
+
+        $(document).keydown(function (event) {
+            let key = event.keyCode;
+            alert(key);
+            const car = $('img.car');
+
+            let left = car.css('left');
+            let left_value = parseInt(left.replace("px", "")); // 512
+
+            if (key === ARROW_LEFT) {
+                left_value -= 50;
+            }
+
+            if (key === ARROW_RIGHT) {
+                left_value += 50;
+            }
+
+            car.animate({
+                left: (left_value + "px")
+            });
+        });
+    });
+</script>
+</body>
+</html>
